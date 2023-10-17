@@ -12,6 +12,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\PaintAndShow.Data\PaintAndShow.Data.csproj" />
     <ProjectReference Include="..\PaintAndShow.Domain\PaintAndShow.Domain.csproj" />
   </ItemGroup>
 
