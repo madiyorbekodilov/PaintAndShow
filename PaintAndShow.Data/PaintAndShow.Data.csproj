@@ -23,4 +23,8 @@
     <ProjectReference Include="..\PaintAndShow.Domain\PaintAndShow.Domain.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="AllMedia\" />
+  </ItemGroup>
+
 </Project>
