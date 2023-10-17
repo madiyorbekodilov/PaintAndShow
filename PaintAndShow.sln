@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PaintAndShow.WebApi", "Pain
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PaintAndShow.Data", "PaintAndShow.Data\PaintAndShow.Data.csproj", "{2ACA9FDE-3498-4D0A-A147-8F9349A27A1D}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PaintAndShow.Domain", "PaintAndShow.Domain\PaintAndShow.Domain.csproj", "{17CE84AA-931F-4781-8BC6-A50B39F189D3}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{2ACA9FDE-3498-4D0A-A147-8F9349A27A1D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2ACA9FDE-3498-4D0A-A147-8F9349A27A1D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2ACA9FDE-3498-4D0A-A147-8F9349A27A1D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{17CE84AA-931F-4781-8BC6-A50B39F189D3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{17CE84AA-931F-4781-8BC6-A50B39F189D3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{17CE84AA-931F-4781-8BC6-A50B39F189D3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{17CE84AA-931F-4781-8BC6-A50B39F189D3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
