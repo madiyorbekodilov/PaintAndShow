@@ -5,8 +5,7 @@ namespace PaintAndShow.Service.Interfaces;
 public interface IPhotoService
 {
     Task<PhotoResultDto> AddAsync(PhotoCreationDto dto);
-    Task<PhotoResultDto> ModifyAsync(PhotoUpdateDto dto);
-    Task<bool> RemoveAsync(long id);
-    Task<PhotoResultDto> RetrieveByIdAsync(long id);
+    Task<bool> RemoveAsync(string photoName);
+    Task<PhotoResultDto> RetrieveByIdAsync(string photoName);
     Task<IEnumerable<PhotoResultDto>> RetrieveAllAsync();
 }

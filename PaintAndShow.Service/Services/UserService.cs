@@ -22,7 +22,7 @@ public class UserService : IUserService
     {
         User existUser = await this.userRepository.SelectAsync(u => u.UserName.Equals(dto.UserName));
         if (existUser is not null)
-            throw new AlreadyExistException($"This user is already exists with phone = {dto.UserName}");
+            throw new AlreadyExistException($"This user is already exists with username = {dto.UserName}");
 
         var mappedUser = this.mapper.Map<User>(dto);
         mappedUser.Password = PasswordHash.Encrypt(mappedUser.Password);
