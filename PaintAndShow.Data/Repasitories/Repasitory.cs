@@ -54,7 +54,7 @@ public class Repasitory<T> : IRepasitory<T> where T : Auditable
 
         return query;
     }
-    public Task SaveAsync()
+    public async Task SaveAsync()
     {
         await appDbContext.SaveChangesAsync();
     }
