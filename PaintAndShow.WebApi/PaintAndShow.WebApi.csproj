@@ -25,10 +25,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Controllers\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\PaintAndShow.Data\PaintAndShow.Data.csproj" />
     <ProjectReference Include="..\PaintAndShow.Service\PaintAndShow.Service.csproj" />
   </ItemGroup>
