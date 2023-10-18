@@ -1,25 +1,27 @@
 ﻿using AutoMapper;
-using Microsoft.EntityFrameworkCore;
 using PaintAndShow.Data.IRepasitories;
 using PaintAndShow.Domain.Entities;
 using PaintAndShow.Service.DTOs.Friends;
 using PaintAndShow.Service.DTOs.Users;
 using PaintAndShow.Service.Exceptions;
-using PaintAndShow.Service.Helpers;
 using PaintAndShow.Service.Interfaces;
-using System.Xml;
 
 namespace PaintAndShow.Service.Services;
 
 public class FriendService : IFrieandService
 {
     private readonly IMapper mapper;
-    private readonly IRepasitory<Friend> friendRepository;
+    private readonly IUserService userService;
     private readonly IRepasitory<User> userRepository;
-    public FriendService(IRepasitory<Friend> friendRepository, IRepasitory<User> userRepository, IMapper mapper)
+    private readonly IRepasitory<Friend> friendRepository;
+    public FriendService(IRepasitory<Friend> friendRepository,
+        IRepasitory<User> repasitory,
+        IUserService userService,
+        IMapper mapper)
     {
         this.mapper = mapper;
-        this.userRepository = userRepository;
+        this.userService = userService;
+        this.userRepository = repasitory;
         this.friendRepository = friendRepository;
     }
     public async Task<FriendResultDto> AddAsync(string name, long id)
@@ -39,7 +41,7 @@ public class FriendService : IFrieandService
         return result;
     }
 
-    public async Task<bool> RemoveAsync(string username , long id)
+    public async Task<bool> RemoveAsync(string username, long id)
     {
         User existUser = await this.userRepository.SelectAsync(u => u.UserName.Equals(username))
             ?? throw new NotFoundException($"This user is not found with name = {username}");
@@ -49,12 +51,28 @@ public class FriendService : IFrieandService
             ?? throw new NotFoundException("This user is not your friend");
 
         this.friendRepository.Delete(snow);
-        await this.userRepository.SaveAsync();
+        await this.friendRepository.SaveAsync();
         return true;
     }
 
-    public Task<IEnumerable<User>> RetrieveAllAsync()
+    public async Task<List<UserResultDto>> RetrieveAllAsync(long id)
     {
-        throw new NotImplementedException();
+        var users = this.friendRepository.SelectAll();
+
+        List<long> friends = new();
+        List<UserResultDto> dost = new List<UserResultDto>();
+
+        foreach (var user in users)
+        {
+            
+            friends.Add(user.FriendsId);
+            
+        }
+        foreach(var idd in friends)
+        {
+            var data = await this.userService.RetrieveByIdAsync(idd);
+            dost.Add(data);
+        }
+        return dost;
     }
 }

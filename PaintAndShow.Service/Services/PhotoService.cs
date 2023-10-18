@@ -54,12 +54,4 @@ public class PhotoService : IPhotoService
         return mappedPhotos;
     }
 
-    public async Task<PhotoResultDto> RetrieveByIdAsync(string photoName)
-    {
-        Photo existPhoto = await this.photoRepository.SelectAsync(u => u.PhotoName.Equals(photoName))
-           ?? throw new NotFoundException($"This photo is not found with Name = {photoName}");
-
-        var result = this.mapper.Map<PhotoResultDto>(existPhoto);
-        return result;
-    }
 }

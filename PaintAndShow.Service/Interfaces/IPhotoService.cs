@@ -6,6 +6,5 @@ public interface IPhotoService
 {
     Task<PhotoResultDto> AddAsync(PhotoCreationDto dto);
     Task<bool> RemoveAsync(string photoName);
-    Task<PhotoResultDto> RetrieveByIdAsync(string photoName);
     Task<IEnumerable<PhotoResultDto>> RetrieveAllAsync();
 }
