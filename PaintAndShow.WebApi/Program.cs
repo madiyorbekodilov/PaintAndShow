@@ -23,7 +23,7 @@ builder.Services.AddServices();
 builder.Services.ConfigureSwagger();
 
 // JWT
-builder.Services.AddJwt(builder.Configuration);
+// builder.Services.AddJwt(builder.Configuration);
 
 // Lowercase routing
 
