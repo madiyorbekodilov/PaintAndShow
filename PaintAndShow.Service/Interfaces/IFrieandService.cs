@@ -5,7 +5,7 @@ namespace PaintAndShow.Service.Interfaces;
 
 public interface IFrieandService
 {
-    Task<FriendResultDto> AddAsync(string name);
-    Task<bool> RemoveAsync(long username);
+    Task<FriendResultDto> AddAsync(string name, long id);
+    Task<bool> RemoveAsync(string username , long id);
     Task<IEnumerable<User>> RetrieveAllAsync();
 }

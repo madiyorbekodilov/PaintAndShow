@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.Extensions.DependencyInjection.Extensions;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using PaintAndShow.Data.IRepasitories;
@@ -17,6 +18,9 @@ public static class ServicesCollection
         services.AddAutoMapper(typeof(MappingProfile));
         services.AddScoped<IUserService, UserService>();
         services.AddScoped<IAutService, AuthService>();
+        services.AddScoped<IUserProvider, UserProvider>();
+        services.AddScoped<IFrieandService, FriendService>();
+        services.TryAddSingleton<IHttpContextAccessor, HttpContextAccessor>();
         services.AddScoped(typeof(IRepasitory<>), typeof(Repasitory<>));
     }
 

@@ -2,6 +2,7 @@
 using PaintAndShow.Domain.Entities;
 using PaintAndShow.Service.DTOs.Users;
 using PaintAndShow.Service.DTOs.Photos;
+using PaintAndShow.Service.DTOs.Friends;
 
 namespace PaintAndShow.Service.Mappers;
 
@@ -18,5 +19,9 @@ public class MappingProfile : Profile
         CreateMap<Photo, PhotoResultDto>().ReverseMap();
         CreateMap<PhotoCreationDto, Photo>().ReverseMap();
         CreateMap<PhotoUpdateDto, Photo>().ReverseMap();
+        // Friend
+        CreateMap<Friend, FriendResultDto>().ReverseMap();
+        CreateMap<FriendCreationDto, Friend>().ReverseMap();
+        CreateMap<FriendUpdateDto, Friend>().ReverseMap();
     }
 }
