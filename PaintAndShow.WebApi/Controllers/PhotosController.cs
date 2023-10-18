@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using PaintAndShow.Service.DTOs.Friends;
 using PaintAndShow.Service.DTOs.Photos;
 using PaintAndShow.Service.Interfaces;
 using PaintAndShow.WebApi.Models;
@@ -16,11 +17,13 @@ public class PhotosController : BaseController
 
     [Authorize]
     [HttpPost("UploadPhoto")]
-    public async Task<IActionResult> UploadPhoto(PhotoCreationDto path)
+    public async Task<IActionResult> UploadPhoto(string name,
+        string description,
+        [FromForm] AttachmentCrDto dto)
         => Ok(new Response
         {
             StatusCode = 200,
             Message = "Success",
-            Data = this.photoService.AddAsync(path)
+            Data = this.photoService.AddAsync(name,description,dto)
         });
 }

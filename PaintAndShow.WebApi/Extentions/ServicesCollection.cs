@@ -19,6 +19,7 @@ public static class ServicesCollection
         services.AddScoped<IUserService, UserService>();
         services.AddScoped<IAutService, AuthService>();
         services.AddScoped<IUserProvider, UserProvider>();
+        services.AddScoped<IPhotoService, PhotoService>();
         services.AddScoped<IFrieandService, FriendService>();
         services.TryAddSingleton<IHttpContextAccessor, HttpContextAccessor>();
         services.AddScoped(typeof(IRepasitory<>), typeof(Repasitory<>));
