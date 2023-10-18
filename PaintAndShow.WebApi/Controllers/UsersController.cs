@@ -14,8 +14,8 @@ public class UsersController : BaseController
         this.userService = userService;
     }
 
-    [AllowAnonymous]
     [HttpPost("create")]
+    [AllowAnonymous]
     public async ValueTask<IActionResult> PostAsync(UserCreationDto dto)
         => Ok(new Response
         {
@@ -24,6 +24,8 @@ public class UsersController : BaseController
             Data = await this.userService.AddAsync(dto)
         });
 
+
+    [Authorize]
     [HttpPut("update")]
     public async ValueTask<IActionResult> PutAsync(UserUpdateDto dto)
         => Ok(new Response
@@ -33,7 +35,7 @@ public class UsersController : BaseController
             Data = await this.userService.ModifyAsync(dto)
         });
 
-
+    [Authorize]
     [HttpDelete("delete/{id:long}")]
     public async ValueTask<IActionResult> DeleteAsync(long id)
         => Ok(new Response
@@ -43,6 +45,7 @@ public class UsersController : BaseController
             Data = await this.userService.RemoveAsync(id)
         });
 
+    [Authorize]
     [HttpGet("get/{id:long}")]
     public async ValueTask<IActionResult> GetByIdAsync(long id)
         => Ok(new Response
@@ -52,7 +55,7 @@ public class UsersController : BaseController
             Data = await this.userService.RetrieveByIdAsync(id)
         });
 
-
+    [Authorize]
     [HttpGet("get-all")]
     public async ValueTask<IActionResult> GetAllAsync()
         => Ok(new Response
@@ -61,4 +64,6 @@ public class UsersController : BaseController
             Message = "Success",
             Data = await this.userService.RetrieveAllAsync()
         });
+
+    
 }

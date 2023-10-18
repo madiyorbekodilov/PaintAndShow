@@ -16,6 +16,7 @@ public static class ServicesCollection
     {
         services.AddAutoMapper(typeof(MappingProfile));
         services.AddScoped<IUserService, UserService>();
+        services.AddScoped<IAutService, AuthService>();
         services.AddScoped(typeof(IRepasitory<>), typeof(Repasitory<>));
     }
 

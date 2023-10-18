@@ -13,11 +13,11 @@ public class AuthController : BaseController
     }
 
     [HttpPost("login")]
-    public async Task<IActionResult> GenerateTokenAsync(string phone, string password)
+    public async Task<IActionResult> GenerateTokenAsync(string username, string password)
         => Ok(new Response
         {
             StatusCode = 200,
             Message = "Success",
-            Data = await this.authService.GenerateTokenAsync(phone, password)
+            Data = await this.authService.GenerateTokenAsync(username, password)
         });
 }
