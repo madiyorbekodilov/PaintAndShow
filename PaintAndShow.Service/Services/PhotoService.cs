@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Microsoft.EntityFrameworkCore;
 using PaintAndShow.Data.IRepasitories;
 using PaintAndShow.Domain.Entities;
 using PaintAndShow.Service.DTOs.Photos;
@@ -11,6 +12,7 @@ namespace PaintAndShow.Service.Services;
 
 public class PhotoService : IPhotoService
 {
+    PhotoWriter photoWriter = new PhotoWriter();
     private readonly IMapper mapper;
     private readonly IRepasitory<Photo> photoRepository;
     public PhotoService(IRepasitory<Photo> photoRepository, IMapper mapper)
@@ -24,7 +26,10 @@ public class PhotoService : IPhotoService
         if (existUser is not null)
             throw new AlreadyExistException($"This photo is already exists with name = {dto.PhotoName}");
 
+
+        string aniqPath = photoWriter.GetPhoto(dto.Path);
         var mappedPhoto = this.mapper.Map<Photo>(dto);
+        mappedPhoto.Path = aniqPath;
         await this.photoRepository.CreateAsync(mappedPhoto);
         await this.photoRepository.SaveAsync();
 
@@ -32,18 +37,29 @@ public class PhotoService : IPhotoService
         return result;
     }
 
-    public Task<bool> RemoveAsync(long id)
+    public async Task<bool> RemoveAsync(string photoName)
     {
-        throw new NotImplementedException();
+        Photo existUser = await this.photoRepository.SelectAsync(u => u.PhotoName.Equals(photoName))
+            ?? throw new NotFoundException($"This photo is not found with name = {photoName}");
+
+        this.photoRepository.Delete(existUser);
+        await this.photoRepository.SaveAsync();
+        return true;
     }
 
-    public Task<IEnumerable<PhotoResultDto>> RetrieveAllAsync()
+    public async Task<IEnumerable<PhotoResultDto>> RetrieveAllAsync()
     {
-        throw new NotImplementedException();
+        var photos = await this.photoRepository.SelectAll().ToListAsync();
+        var mappedPhotos = this.mapper.Map<List<PhotoResultDto>>(photos);
+        return mappedPhotos;
     }
 
-    public Task<PhotoResultDto> RetrieveByIdAsync(long id)
+    public async Task<PhotoResultDto> RetrieveByIdAsync(string photoName)
     {
-        throw new NotImplementedException();
+        Photo existPhoto = await this.photoRepository.SelectAsync(u => u.PhotoName.Equals(photoName))
+           ?? throw new NotFoundException($"This photo is not found with Name = {photoName}");
+
+        var result = this.mapper.Map<PhotoResultDto>(existPhoto);
+        return result;
     }
 }
