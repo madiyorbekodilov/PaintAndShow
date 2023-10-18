@@ -1,6 +1,8 @@
 ﻿using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
+using PaintAndShow.Data.IRepasitories;
+using PaintAndShow.Data.Repasitories;
 using PaintAndShow.Service.Interfaces;
 using PaintAndShow.Service.Mappers;
 using PaintAndShow.Service.Services;
@@ -12,7 +14,9 @@ public static class ServicesCollection
 {
     public static void AddServices(this IServiceCollection services)
     {
-        
+        services.AddAutoMapper(typeof(MappingProfile));
+        services.AddScoped<IUserService, UserService>();
+        services.AddScoped(typeof(IRepasitory<>), typeof(Repasitory<>));
     }
 
     public static void AddJwt(this IServiceCollection services, IConfiguration configuration)

@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using PaintAndShow.Service.DTOs.Users;
 using PaintAndShow.Service.Interfaces;
 using PaintAndShow.WebApi.Models;
@@ -13,6 +14,7 @@ public class UsersController : BaseController
         this.userService = userService;
     }
 
+    [AllowAnonymous]
     [HttpPost("create")]
     public async ValueTask<IActionResult> PostAsync(UserCreationDto dto)
         => Ok(new Response
