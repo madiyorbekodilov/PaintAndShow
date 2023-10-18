@@ -29,6 +29,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\PaintAndShow.Data\PaintAndShow.Data.csproj" />
+    <ProjectReference Include="..\PaintAndShow.Service\PaintAndShow.Service.csproj" />
   </ItemGroup>
 
 </Project>
